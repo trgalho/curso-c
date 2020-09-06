@@ -12,72 +12,112 @@
 //#define PRINT_MATRIX
 
 /** Verifica se a ordem informada para a matriz quadrada é válida. */
-int checkSquareMatrixOrder( const int pOrdemMatrizQuadrada );
+int check_square_matrix_order( const int square_matrix_order );
+
+/** Realiza a leitura de inteiros da entrada padrão. */
+void scan_int( int* pInteger );
+
+/** Consome todos os valores do buffer de entrada anteriores ao caractere '\n' */
+void stdin_flush();
 
 int main (void)
 {
-    int squareMatrixOrder;
+    int square_matrix_order;
 
     printf("Informe a ordem da matriz quadrada a ser lida ( O valor deve ser entre %d e %d, inclusive): ", SQUARE_MATRIZ_MIN_ORDER, SQUARE_MATRIX_MAX_ORDER);
-    scanf("%d", &squareMatrixOrder);
+    scan_int(&square_matrix_order);
 
     int exitCode = EXIT_SUCCESS;
 
-    if( !checkSquareMatrixOrder( squareMatrixOrder ) )
+    if( !check_square_matrix_order( square_matrix_order ) )
     {
-        printf("Foi informada uma ordem de matriz quadrada não suportada.\n");
-        printf("Ordem de matriz quadrada informada: %d\n", squareMatrixOrder );
+        printf("Foi informada uma ordem de matriz quadrada nao suportada.\n");
+        printf("Ordem de matriz quadrada informada: %d\n", square_matrix_order );
         exitCode = EXIT_FAILURE;
     }
     else
     {
-        int lowerNumberFound = INT_MAX;
-        int lowerNumberLineIndex = 0;
+        int lowest_number_found = INT_MAX;
+        int lines_containing_the_lowest_number[square_matrix_order];
+        int number_of_ocurrencies = 0;
 
-        int squareMatrix[squareMatrixOrder][squareMatrixOrder];
+        int square_matrix[square_matrix_order][square_matrix_order];
 
         #ifdef USE_MEMORY_TRASH
-            printf("Sera utilizado lixo de memórioa para os valores da matriz.\n");
+            printf("Sera utilizado lixo de memoria para os valores da matriz.\n");
         #else
             printf("Preencha a matriz quadrada:\n");
         #endif
 
-        for( int i=0; i < squareMatrixOrder; i++ )
+        for( int i=0; i < square_matrix_order; i++ )
         {
-            for( int j=0;j < squareMatrixOrder; j++)
+            for( int j=0;j < square_matrix_order; j++)
             {
                 #ifndef USE_MEMORY_TRASH
-                    printf("Insira o número para a posição [%d][%d]: ", i,j);
-                    scanf("%d", &squareMatrix[i][j]);
+                    printf("Insira o numero para a posicao [%d][%d]: ", i,j);
+                    scan_int(&square_matrix[i][j]);
                 #endif // USE_MEMORY_TRASH
 
-                if( squareMatrix[i][j] <= lowerNumberFound )
+                if( number_of_ocurrencies == 0 || square_matrix[i][j] < lowest_number_found )
                 {
-                    lowerNumberFound = squareMatrix[i][j];
-                    lowerNumberLineIndex = i;
+                    number_of_ocurrencies = 1;
+
+                    lines_containing_the_lowest_number[0] = i;
+
+                    lowest_number_found = square_matrix[i][j];
+                }
+                else if( square_matrix[i][j] == lowest_number_found )
+                {
+                    int last_line_index_found = lines_containing_the_lowest_number[number_of_ocurrencies - 1];
+
+                    if( last_line_index_found != i)
+                    {
+                        lines_containing_the_lowest_number[number_of_ocurrencies] = i;
+                        number_of_ocurrencies++;
+                    }
                 }
             }
         }
 
         #ifdef PRINT_MATRIX
-            for( int i=0; i < squareMatrixOrder; i++ )
+            for( int i=0; i < square_matrix_order; i++ )
             {
-                for( int j=0;j < squareMatrixOrder; j++)
+                for( int j=0;j < square_matrix_order; j++)
                 {
-                    printf("%12d ", squareMatrix[i][j]);
+                    printf("%12d ", square_matrix[i][j]);
                 }
                 printf("\n");
             }
         #endif // PRINT_MATRIX
 
-        printf("Linha contendo o menor número da matriz: %d\n", lowerNumberLineIndex+1);
-        printf("Menor número encontrado na matriz: %d\n", lowerNumberFound);
+        printf("Menor numero encontrado na matriz: %d\n", lowest_number_found);
+
+        printf("Linha(s) contendo o menor número da matriz:\n");
+        for( int i=0; i < number_of_ocurrencies; i++)
+        {
+            printf("%d\n", lines_containing_the_lowest_number[i]);
+        }
     }
 
     return exitCode;
 }
 
-int checkSquareMatrixOrder( const int pOrdemMatrizQuadrada )
+int check_square_matrix_order( const int square_matrix_order )
 {
-    return pOrdemMatrizQuadrada >= SQUARE_MATRIZ_MIN_ORDER  && pOrdemMatrizQuadrada <= SQUARE_MATRIX_MAX_ORDER;
+    return square_matrix_order >= SQUARE_MATRIZ_MIN_ORDER  && square_matrix_order <= SQUARE_MATRIX_MAX_ORDER;
+}
+
+void stdin_flush()
+{
+    while ((getchar()) != '\n');
+}
+
+void scan_int( int* pInteger )
+{
+    while ( ! scanf("%d", pInteger) ) {
+        stdin_flush();
+        printf("Valor invalido. Tente novamente\n");
+    };
+
+    stdin_flush();
 }

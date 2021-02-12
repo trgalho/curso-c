@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1606768511 source:/mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/debug.c
+	"debug.h"
+	<stdio.h>
+
+1606768465 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/debug.h
+	"custom_types.h"
+
+1606783751 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/custom_types.h
+
+1606793471 source:/mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/game.c
+	"game.h"
+	<stdio.h>
+	"game_worker.h"
+	"helper.h"
+	"loader.h"
+	"utils.h"
+	"debug.h"
+
+1606790317 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/game.h
+
+1606792875 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/game_worker.h
+	"custom_types.h"
+
+1606789286 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/helper.h
+
+1606781894 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/loader.h
+	"helper.h"
+	"custom_types.h"
+
+1606789785 /mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/utils.h
+
+1606790568 source:/mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/loader.c
+	"loader.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"debug.h"
+
+1606789200 source:/mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/main.c
+	"game.h"
+
+1606790766 source:/mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/utils.c
+	"utils.h"
+	<stdio.h>
+	<stdlib.h>
+	"helper.h"
+
+1606793410 source:/mnt/OS/Users/DELL/Projects/Curso C - LOHR/TarefaFinal/game_worker.c
+	"game_worker.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"loader.h"
+	"utils.h"
+

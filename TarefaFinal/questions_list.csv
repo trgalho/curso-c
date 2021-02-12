@@ -1,0 +1,18 @@
+question_type,question_subtype,question_answer_value,question_answer_possibilities,question_text
+1,1,1,2,e menino?
+1,1,2,2,e menina?
+2,1,1,4,tem cabelo preto?
+2,1,2,4,tem cabelo loiro?
+2,1,4,4,tem cabelo castanho?
+2,1,8,4,tem cabelo ruivo?
+3,3,1,7,usa vestido?
+3,1,2,7,usa camiseta?
+3,2,4,7,usa calcao?
+3,2,8,7,usa bermuda?
+3,2,16,7,usa calca?
+3,1,32,7,usa blusa?
+3,2,64,7,usa macacao?
+4,1,1,4,tem cao?
+4,1,2,4,tem gato?
+4,1,4,4,tem porco?
+4,1,8,4,não tem pet?
